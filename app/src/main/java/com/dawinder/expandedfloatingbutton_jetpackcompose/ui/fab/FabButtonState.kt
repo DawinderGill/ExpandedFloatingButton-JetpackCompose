@@ -1,9 +1,8 @@
-package com.dawinder.expandedfloatingbutton_jetpackcompose
+package com.dawinder.expandedfloatingbutton_jetpackcompose.ui.fab
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 
 sealed class FabButtonState {
     object Collapsed : FabButtonState()

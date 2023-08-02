@@ -1,4 +1,4 @@
-package com.dawinder.expandedfloatingbutton_jetpackcompose
+package com.dawinder.expandedfloatingbutton_jetpackcompose.ui.fab
 
 import androidx.compose.ui.graphics.vector.ImageVector
 

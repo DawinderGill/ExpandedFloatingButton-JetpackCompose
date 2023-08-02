@@ -1,4 +1,4 @@
-package com.dawinder.expandedfloatingbutton_jetpackcompose
+package com.dawinder.expandedfloatingbutton_jetpackcompose.ui.fab
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
@@ -18,7 +18,7 @@ private class FabButtonSubImpl(
 ) : FabButtonSub
 
 @Composable
-fun FabButtonSub(
+fun fabButtonSub(
     backgroundTint: Color = md_theme_light_primary,
     iconTint: Color = md_theme_light_onSecondary,
     showLabel: Boolean = false

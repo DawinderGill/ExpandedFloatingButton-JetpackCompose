@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ExpandedFloatingButton-JetpackCompose</string>
+    <string name="home">Home</string>
+    <string name="list">List</string>
+    <string name="notifications">Notifications</string>
+    <string name="main_fab_rotation">Main fab rotation</string>
+    <string name="float_icon">Float Icon</string>
+    <string name="main_fab_button">Main Fab Button</string>
 </resources>

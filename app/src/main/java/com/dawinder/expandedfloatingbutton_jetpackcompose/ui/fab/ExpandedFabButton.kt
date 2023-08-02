@@ -1,4 +1,4 @@
-package com.dawinder.expandedfloatingbutton_jetpackcompose
+package com.dawinder.expandedfloatingbutton_jetpackcompose.ui.fab
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -21,13 +22,14 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.dawinder.expandedfloatingbutton_jetpackcompose.ui.theme.md_theme_light_secondaryContainer
+import com.dawinder.expandedfloatingbutton_jetpackcompose.R
+import com.dawinder.expandedfloatingbutton_jetpackcompose.ui.theme.md_theme_light_onSecondary
+import com.dawinder.expandedfloatingbutton_jetpackcompose.ui.theme.md_theme_light_scrim
+import com.dawinder.expandedfloatingbutton_jetpackcompose.ui.theme.typography
 
 @Composable
 fun MultiFloatingActionButton(
@@ -35,7 +37,7 @@ fun MultiFloatingActionButton(
     items: List<FabButtonItem>,
     fabState: MutableState<FabButtonState> = rememberMultiFabState(),
     fabIcon: FabButtonMain,
-    fabOption: FabButtonSub = FabButtonSub(),
+    fabOption: FabButtonSub = fabButtonSub(),
     onFabItemClicked: (fabItem: FabButtonItem) -> Unit,
     stateChanged: (fabState: FabButtonState) -> Unit = {}
 ) {
@@ -44,7 +46,7 @@ fun MultiFloatingActionButton(
             fabIcon.iconRotate ?: 0f
         } else {
             0f
-        }, label = ""
+        }, label = stringResource(R.string.main_fab_rotation)
     )
 
     Column(
@@ -68,7 +70,6 @@ fun MultiFloatingActionButton(
                         onFabItemClicked = onFabItemClicked
                     )
                 }
-
                 item {}
             }
         }
@@ -83,7 +84,7 @@ fun MultiFloatingActionButton(
         ) {
             Icon(
                 imageVector = fabIcon.iconRes,
-                contentDescription = "FAB",
+                contentDescription = stringResource(R.string.main_fab_button),
                 modifier = Modifier.rotate(rotation),
                 tint = fabOption.iconTint
             )
@@ -107,25 +108,24 @@ fun MiniFabItem(
         if (fabOption.showLabel) {
             Text(
                 text = item.label,
-                fontSize = 12.sp,
-                fontWeight = FontWeight.Bold,
+                style = typography.labelSmall,
+                color = md_theme_light_onSecondary,
                 modifier = Modifier
-                    .background(md_theme_light_secondaryContainer)
-                    .padding(horizontal = 6.dp, vertical = 4.dp)
+                    .clip(RoundedCornerShape(size = 8.dp))
+                    .background(md_theme_light_scrim.copy(alpha = 0.5f))
+                    .padding(all = 8.dp)
             )
         }
 
         FloatingActionButton(
-            onClick = {
-                onFabItemClicked(item)
-            },
+            onClick = { onFabItemClicked(item) },
             modifier = Modifier.size(40.dp),
             containerColor = fabOption.backgroundTint,
             contentColor = fabOption.iconTint
         ) {
             Icon(
                 imageVector = item.iconRes,
-                contentDescription = "Float Icon",
+                contentDescription = stringResource(R.string.float_icon),
                 tint = fabOption.iconTint
             )
         }
