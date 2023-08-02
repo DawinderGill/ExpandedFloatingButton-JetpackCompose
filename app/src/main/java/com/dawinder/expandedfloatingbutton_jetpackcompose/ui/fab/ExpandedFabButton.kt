@@ -32,6 +32,17 @@ import com.dawinder.expandedfloatingbutton_jetpackcompose.ui.theme.md_theme_ligh
 import com.dawinder.expandedfloatingbutton_jetpackcompose.ui.theme.md_theme_light_scrim
 import com.dawinder.expandedfloatingbutton_jetpackcompose.ui.theme.typography
 
+/**
+ * Composable function to display a Multi-Floating Action Button (Multi-FAB) that can be expanded to reveal sub-items.
+ *
+ * @param modifier The optional [Modifier] for customizing the layout of the Multi-FAB.
+ * @param items The list of [FabButtonItem] representing the sub-items to be displayed when the Multi-FAB is expanded.
+ * @param fabState The [MutableState] representing the current state of the Multi-FAB, whether it is expanded or collapsed.
+ * @param fabIcon The [FabButtonMain] representing the main FAB with an icon and optional rotation.
+ * @param fabOption The [FabButtonSub] representing the customization options for the sub-items.
+ * @param onFabItemClicked The callback function to handle click events on the sub-items.
+ * @param stateChanged The optional callback function to notify when the state of the Multi-FAB changes (expanded or collapsed).
+ */
 @Composable
 fun MultiFloatingActionButton(
     modifier: Modifier = Modifier,
@@ -42,6 +53,7 @@ fun MultiFloatingActionButton(
     onFabItemClicked: (fabItem: FabButtonItem) -> Unit,
     stateChanged: (fabState: FabButtonState) -> Unit = {}
 ) {
+    // Animation for rotating the main FAB icon based on its state (expanded or collapsed)
     val rotation by animateFloatAsState(
         if (fabState.value == FabButtonState.Expand) {
             fabIcon.iconRotate ?: 0f
@@ -54,27 +66,31 @@ fun MultiFloatingActionButton(
         modifier = modifier.wrapContentSize(),
         horizontalAlignment = Alignment.End
     ) {
+        // AnimatedVisibility to show or hide the sub-items when the Multi-FAB is expanded or collapsed
         AnimatedVisibility(
             visible = fabState.value.isExpanded(),
             enter = fadeIn() + expandVertically(),
             exit = fadeOut() + shrinkVertically()
         ) {
+            // LazyColumn to display the sub-items in a vertical list
             LazyColumn(
                 modifier = Modifier.wrapContentSize(),
                 horizontalAlignment = Alignment.End,
                 verticalArrangement = Arrangement.spacedBy(15.dp)
             ) {
                 items(items.size) { index ->
+                    // Composable to display each individual sub-item
                     MiniFabItem(
                         item = items[index],
                         fabOption = fabOption,
                         onFabItemClicked = onFabItemClicked
                     )
                 }
-                item {}
+                item {} // Empty item to provide spacing at the end of the list
             }
         }
 
+        // Main FloatingActionButton representing the Multi-FAB
         FloatingActionButton(
             onClick = {
                 fabState.value = fabState.value.toggleValue()
@@ -83,6 +99,7 @@ fun MultiFloatingActionButton(
             containerColor = fabOption.backgroundTint,
             contentColor = fabOption.iconTint
         ) {
+            // Icon for the main FAB with optional rotation based on its state (expanded or collapsed)
             Icon(
                 imageVector = fabIcon.iconRes,
                 contentDescription = stringResource(R.string.main_fab_button),
@@ -93,6 +110,13 @@ fun MultiFloatingActionButton(
     }
 }
 
+/**
+ * Composable function to display an individual sub-item of the Multi-Floating Action Button (Multi-FAB).
+ *
+ * @param item The [FabButtonItem] representing the sub-item with an icon and label.
+ * @param fabOption The [FabButtonSub] representing the customization options for the sub-items.
+ * @param onFabItemClicked The callback function to handle click events on the sub-items.
+ */
 @Composable
 fun MiniFabItem(
     item: FabButtonItem,
@@ -106,6 +130,7 @@ fun MiniFabItem(
         horizontalArrangement = Arrangement.spacedBy(10.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
+        // Text label for the sub-item displayed in a rounded-corner background
         Text(
             text = item.label,
             style = typography.labelSmall,
@@ -116,12 +141,14 @@ fun MiniFabItem(
                 .padding(all = 8.dp)
         )
 
+        // FloatingActionButton representing the sub-item
         FloatingActionButton(
             onClick = { onFabItemClicked(item) },
             modifier = Modifier.size(40.dp),
             containerColor = fabOption.backgroundTint,
             contentColor = fabOption.iconTint
         ) {
+            // Icon for the sub-item with customized tint
             Icon(
                 imageVector = item.iconRes,
                 contentDescription = stringResource(R.string.float_icon),

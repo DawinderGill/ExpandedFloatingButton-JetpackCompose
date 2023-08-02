@@ -26,26 +26,29 @@ import com.dawinder.expandedfloatingbutton_jetpackcompose.ui.fab.FabButtonMain
 import com.dawinder.expandedfloatingbutton_jetpackcompose.ui.fab.FabButtonSub
 import com.dawinder.expandedfloatingbutton_jetpackcompose.ui.fab.MultiFloatingActionButton
 
+/**
+ * Composable function to display the main screen of the application.
+ * The main screen contains a Scaffold with a Multi-Floating Action Button (Multi-FAB) and a Text component.
+ * When the Multi-FAB is expanded, it shows sub-items as individual Floating Action Buttons (FABs).
+ */
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainScreen() {
     val context = LocalContext.current
 
+    // Scaffold with a Multi-Floating Action Button (Multi-FAB)
     Scaffold(floatingActionButton = {
         MultiFloatingActionButton(
             items = listOf(
                 FabButtonItem(
-                    id = 1,
                     iconRes = Icons.Filled.Home,
                     label = stringResource(id = R.string.home)
                 ),
                 FabButtonItem(
-                    id = 2,
                     iconRes = Icons.Filled.ListAlt,
                     label = stringResource(id = R.string.list)
                 ),
                 FabButtonItem(
-                    id = 3,
                     iconRes = Icons.Filled.AddAlert,
                     label = stringResource(id = R.string.notifications)
                 )
@@ -57,6 +60,7 @@ fun MainScreen() {
             fabOption = FabButtonSub()
         )
     }) {
+        // Main content of the screen inside a Column
         Column(
             modifier = Modifier
                 .fillMaxSize()
