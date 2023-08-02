@@ -5,6 +5,7 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -37,7 +38,7 @@ fun MultiFloatingActionButton(
     items: List<FabButtonItem>,
     fabState: MutableState<FabButtonState> = rememberMultiFabState(),
     fabIcon: FabButtonMain,
-    fabOption: FabButtonSub = fabButtonSub(),
+    fabOption: FabButtonSub = FabButtonSub(),
     onFabItemClicked: (fabItem: FabButtonItem) -> Unit,
     stateChanged: (fabState: FabButtonState) -> Unit = {}
 ) {
@@ -56,7 +57,7 @@ fun MultiFloatingActionButton(
         AnimatedVisibility(
             visible = fabState.value.isExpanded(),
             enter = fadeIn() + expandVertically(),
-            exit = fadeOut()
+            exit = fadeOut() + shrinkVertically()
         ) {
             LazyColumn(
                 modifier = Modifier.wrapContentSize(),
@@ -105,17 +106,15 @@ fun MiniFabItem(
         horizontalArrangement = Arrangement.spacedBy(10.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        if (fabOption.showLabel) {
-            Text(
-                text = item.label,
-                style = typography.labelSmall,
-                color = md_theme_light_onSecondary,
-                modifier = Modifier
-                    .clip(RoundedCornerShape(size = 8.dp))
-                    .background(md_theme_light_scrim.copy(alpha = 0.5f))
-                    .padding(all = 8.dp)
-            )
-        }
+        Text(
+            text = item.label,
+            style = typography.labelSmall,
+            color = md_theme_light_onSecondary,
+            modifier = Modifier
+                .clip(RoundedCornerShape(size = 8.dp))
+                .background(md_theme_light_scrim.copy(alpha = 0.5f))
+                .padding(all = 8.dp)
+        )
 
         FloatingActionButton(
             onClick = { onFabItemClicked(item) },

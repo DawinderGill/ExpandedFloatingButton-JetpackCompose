@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.dawinder.expandedfloatingbutton_jetpackcompose.R
 import com.dawinder.expandedfloatingbutton_jetpackcompose.ui.fab.FabButtonItem
 import com.dawinder.expandedfloatingbutton_jetpackcompose.ui.fab.FabButtonMain
-import com.dawinder.expandedfloatingbutton_jetpackcompose.ui.fab.fabButtonSub
+import com.dawinder.expandedfloatingbutton_jetpackcompose.ui.fab.FabButtonSub
 import com.dawinder.expandedfloatingbutton_jetpackcompose.ui.fab.MultiFloatingActionButton
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -50,14 +50,11 @@ fun MainScreen() {
                     label = stringResource(id = R.string.notifications)
                 )
             ),
-            fabIcon = FabButtonMain(iconRes = Icons.Filled.Add, iconRotate = 45f),
             onFabItemClicked = {
                 Toast.makeText(context, it.label, Toast.LENGTH_SHORT).show()
             },
-            fabOption = fabButtonSub(
-                iconTint = Color.White,
-                showLabel = true
-            )
+            fabIcon = FabButtonMain(),
+            fabOption = FabButtonSub()
         )
     }) {
         Column(

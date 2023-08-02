@@ -1,5 +1,7 @@
 package com.dawinder.expandedfloatingbutton_jetpackcompose.ui.fab
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.ui.graphics.vector.ImageVector
 
 interface FabButtonMain {
@@ -12,5 +14,5 @@ private class FabButtonMainImpl(
     override val iconRotate: Float?
 ) : FabButtonMain
 
-fun FabButtonMain(iconRes: ImageVector, iconRotate: Float? = null): FabButtonMain =
+fun FabButtonMain(iconRes: ImageVector = Icons.Filled.Add, iconRotate: Float = 45f): FabButtonMain =
     FabButtonMainImpl(iconRes, iconRotate)
