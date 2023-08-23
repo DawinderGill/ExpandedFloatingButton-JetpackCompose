@@ -12,7 +12,7 @@
 
 This project demonstrates the implementation of an Expandable Floating Action Button (FAB) in [Jetpack Compose](https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwirxJ-8nJGAAxWezMIEHZm2DusYABACGgJwdg&ohost=www.google.com&cid=CAESa-D2E9EHPMO24ZVeohcQzPgBKtfVfkbnufBlV2qUiGJ5XL1vhNoQ7Yyk9acePAcC0Xrx3KvcDy_b5pvHL3nlRFYBNebz9_mLYiGTkq45DFvSST2UrzbFYFcZWc4RNKcXC6Bs884F7_fCsX0t&sig=AOD64_1j28Y5zCwhCJe_uPcFZYyLdXxP9Q&q&adurl&ved=2ahUKEwjD8Zm8nJGAAxXPFzQIHcrGDR4Q0Qx6BAgKEAE&nis=8), a modern UI toolkit for building Android apps. The Expandable FAB allows users to perform primary actions through the main FAB and reveal secondary actions or sub-items when the main FAB is expanded.
 
-You can read step by step guide in my [medium](https://medium.com/@dawinderapps/floatingactionbutton-with-sub-floating-items-in-jetpack-compose-734fac0c9116) story.
+You can read the step by step guide in my [medium](https://medium.com/@dawinderapps/floatingactionbutton-with-sub-floating-items-in-jetpack-compose-734fac0c9116) story.
 
 ## 🌳 Environment
 Android Studio verison used : ``Android Studio Hedgehog | 2023.1.1 Canary 11``
